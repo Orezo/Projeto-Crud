@@ -1,0 +1,144 @@
+<header>
+        <h2 class="logo"> Logo</h2>
+
+        <nav class="nave">
+
+            <a href="/">Home</a>
+
+            <a href="/Planos">Planos</a>
+
+            <a href="#">Sobre</a>
+
+            <button type="submit" class="btnLog-popUp">Fazer login</button>
+
+        </nav>
+
+    </header>
+
+    <div class="todoCorpo">
+         <div class="dentroDoW1">
+    
+        <div class="w1">
+            <span class="butaoFechar"><ion-icon name="close"></ion-icon></span>
+    
+    
+            <div class="form-Todo login">
+    
+                <h2>Entrar</h2>
+
+                    <form action="/login" method="post">
+    
+                        <div class="inputs">
+                            <span class="icones"><ion-icon name="mail">
+                            </ion-icon></span>
+                            <input type="email" name="email" required>
+                            <label>E-mail</label>
+                        </div>
+    
+                        <div class="inputs">
+                            <span class="icones"><ion-icon name="lock-closed"> 
+                            </ion-icon></span>
+                            <input type="password" name="senha" required>
+                            <label>Senha</label>
+                        </div>
+    
+                        <div class="lembrarMim">
+                            <label><input type="checkbox">
+                                Lembrar de mim
+                            </label>
+                            <a href="#">Esqueceu a senha?</a>
+                        </div>
+    
+                        <button type="submit" class="butao">Entrar</button>
+                        <a href="/auth/google" class="google-button">Entrar com google</a>
+
+                        <div class="Login_cadastrar">
+                            <p>Novo por aqui?<a class="criarConta">
+                            Cadastre-se</a></p>
+                        </div>
+    
+                    </form>
+
+                    {{#if error}}
+                        <div class="error-message">{{error}}</div>
+                    {{/if}}
+
+            </div>
+    
+    
+            <div class="form-Todo criar">
+    
+                <h2>Criando conta</h2>
+    
+                    <form action="/Registro/insertinfoUsers" method="post">
+    
+                        <div class="inputs">
+                            <span class="icones"><ion-icon name="person">
+                            </ion-icon></span>
+                            <input type="text" name="nomeC" required>
+                            <label>Nome de Usuário</label>
+                        </div>
+    
+                        <div class="inputs">
+                            <span class="icones"><ion-icon name="mail">
+                            </ion-icon></span>
+                            <input type="email" name="emailC" required>
+                            <label>E-mail</label>
+                        </div>
+    
+                        <div class="inputs">
+                            <span class="icones"><ion-icon name="lock-closed"> 
+                            </ion-icon></span>
+                            <input type="password" name="senhaC" required>
+                            <label>Senha</label>
+                        </div>
+    
+                        <div class="lembrarMim">
+                            <label><input type="checkbox" required>
+                                Eu concordo com os termos e condições de uso
+                            </label>
+                        </div>
+    
+                        <button type="submit" class="butao">Criar</button>
+    
+                        <div class="Login_cadastrar">
+                            <p>Já tem uma conta?<a class="voltarLogin">
+                            Entrar</a></p>
+                        </div>
+    
+                    </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const w1 = document.querySelector('.w1');
+
+const linkLogin = document.querySelector('.voltarLogin');
+
+const linkCadastro = document.querySelector('.criarConta');
+
+const butaoPopUp = document.querySelector('.btnLog-popUp');
+
+const botaoFechar = document.querySelector('.butaoFechar');
+
+
+linkCadastro.addEventListener('click', ()=> {
+    w1.classList.add('active');
+});
+
+linkLogin.addEventListener('click', ()=> {
+    w1.classList.remove('active');
+});
+
+butaoPopUp.addEventListener('click', ()=> {
+    w1.classList.add('active-PopUp');
+});
+
+botaoFechar.addEventListener('click', ()=> {
+    w1.classList.remove('active-PopUp');
+});
+
+
+
+</script>

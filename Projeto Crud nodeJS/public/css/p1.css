@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background: #1c3c4d ;
+    background-size: cover;
+    color: #f0ffff;
+}
+
+.todoCorpo{
+    min-height: 100vh;
+    background: #1c3c4d ;
+    background-size: cover;
+    color: #f0ffff;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: #204d64;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    font-size: 0.9rem;
+}
+
+.entrarAcc{
+    font-size: 0.7em;
+}
+
+.logo {
+    font-size: 2em;
+    color: azure;
+    user-select: none;
+}
+
+.nave a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 520;
+    margin-left: 35px;
+}
+
+.nave a:hover {
+    color: #0e1a24;
+}
+
+.nave a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #54798b;
+    border-radius: 6px;
+    left: 0;
+    bottom: -6px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+    
+
+.nave a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+} 
+
+
+.nave  .btnLog-popUp {
+    width: 120px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #54798b;
+    outline: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.1em;
+    color: #f0ffff;
+    font-weight: 520;
+    margin-left: 35px;
+    transition: .4s;
+}
+
+.nave  .btnLog-popUp:hover {
+    background: #54798b;
+    color: #0e1a24 ;
+}
+
+.w1 {
+    position: absolute;
+    width: 400px;
+    height: 480px;
+    background: #749aad;
+    border: 2px solid #54798b;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* transform: scale(0);  */
+    transition: transform .6s ease, height .2s ease;
+    margin-left: 54rem;
+    margin-top: 19rem;
+}
+
+.error-message{
+    color: #193a52;
+    font-weight: 600;
+    font-size: 1.3rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 20px;
+}
+
+
+.w1.active-PopUp {
+    transform: scale(1);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.w1.active {
+    height: 520px;
+}
+
+.w1 .form-Todo {
+    width: 100%;
+    padding: 35px;
+}
+
+.w1 .form-Todo.login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.w1.active .form-Todo.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.w1 .form-Todo.criar {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.w1.active .form-Todo.criar{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+
+
+.w1 .butaoFechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #193a52;
+    font-size: 2em;
+    color: #f0ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-Todo h2 {
+    font-size: 2em;
+    color: #052338;
+    text-align: center;
+}
+
+.inputs {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #030c14;
+    margin: 30px 0;
+}
+
+.inputs label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #052338;
+    font-weight: 600;
+    pointer-events: none;
+    transition: .4s;
+}
+
+.inputs input:focus~label,.inputs input:valid~label {
+    top: -3px;
+}
+
+.inputs input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #030c14;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.inputs .icones {
+    position: absolute;
+    right: 8px;
+    font-size: 1.3em;
+    color:#052338 ;
+    line-height: 57px;
+}
+
+.lembrarMim {
+    font-size: 1rem;
+    color: #052338;
+    font-weight: 700;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lembrarMim label input {
+    color: #1c3c4d;
+    margin-right: 3px;
+}
+
+.lembrarMim a {
+    color: #052338;
+    text-decoration: none;
+}
+
+.lembrarMim a:hover{
+    text-decoration: underline;
+}
+
+.butao {
+    width: 100%;
+    height: 45px;
+    background: #133a57;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #f0ffff;
+    font-weight: 550;
+}
+
+.Login_cadastrar {
+    font-size: 1.1rem;
+    color: #052338;
+    text-align: center;
+    font-weight: 550;
+    margin: 25px 0 10px;
+}
+
+.Login_cadastrar p a {
+    color: #021624;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.Login_cadastrar p a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Começo da lista de planejamento*/
+
+
+/* .textoH {
+    padding: 10rem 0rem 0rem 0rem;
+    font-size: 1.5rem;
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AdicionarPlan {
+    width: 100%;
+    padding: 10px 0;
+    min-height: 10Vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.AdicionarPlan input, .AdicionarPlan button {
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: none;
+}
+
+
+.AdicionarPlan input {
+    width: 30%;
+    color: #333;
+    border: none;
+    border-bottom: 2px solid #666;
+    background: none;
+    padding: 10px;
+    font-size: 22px;
+    outline: none;
+    color: #fff;
+}
+
+.AdicionarPlan .addPlan {
+    background: none;
+    color:#062230 ;
+    font-size: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.AdicionarPlan .addPlan:hover {
+    color:#fff;
+}
+
+.listaCompleta {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ListaPlanejamento {
+    min-width: 30%;
+    list-style: none;
+}
+
+.faltaCumprir {
+    margin: 0.5rem;
+    background: white;
+    color: brown;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+.faltaCumprir li {
+    flex: 1;
+    border-radius: 5px;
+}
+
+.taskCompletada, .excluiTask, .ediTask {
+    background: none;
+    border: none;
+    padding: 0.4rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+.taskCompletada{
+    color: rgb(73, 204, 73);
+}
+
+.ediTask {
+    color: #54798b;
+}
+
+.excluiTask {
+    color: #611d0b;
+}
+
+.listaFalta {
+    padding: 0rem 0.5rem;
+}
+
+.checked, .trash {
+    pointer-events: none;
+}
+
+.Completado {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.vala {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+} */

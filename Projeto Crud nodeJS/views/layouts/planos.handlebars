@@ -1,0 +1,255 @@
+<header>
+    <h2 class="logo"> Logo</h2>
+
+    <nav class="nave">
+
+        <a href="/">Home</a>
+
+        <a href="/Planos">Planos</a>
+
+        <a href="#">Sobre</a>
+
+        <button type="submit" class="btnLog-popUp" onclick="fazerlog()">Fazer login</button>
+
+    </nav>
+
+</header>
+
+<div class="listaDosPlanos">
+    <div class="textoH">
+        <h3>O que você tem planejado para hoje?</h3>
+    </div>
+
+    <form action="/planos/insertafazeres" method="post">
+        <div class="Tarefas">
+            <div class="AdicionarPlan">
+                <input type="text" placeholder="Adicionar plano" class="addPlanT" name="planos">
+                <button class="addPlan" type="submit">
+                    <ion-icon name="add-circle"></ion-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+        <div class="listaCompleta">
+            <ul class="ListaPlanejamento">
+                 {{#each planos}}
+    
+      <div class="faltaCumprir{{#if Completado}} Completado{{/if}}">
+        <li class="listaFalta" data-id="{{id}}">{{tarefas}}</li>
+        <button class="taskCompletada"><ion-icon name="checkmark-circle" class="checked"></ion-icon></button>
+        <button class="ediTask"><ion-icon name="create" class="editB"></ion-icon></button>
+        <form action="/Planos/excluir/{{this.id}}" method="POST">
+        <button type="submit" class="excluiTask"><ion-icon name="trash" class="trash"></ion-icon></button>
+        </form>
+      </div>
+    
+    {{/each}}
+
+            </ul>
+        </div>
+</div>
+
+
+
+
+<script>
+
+const ListaP = document.querySelector('.ListaPlanejamento');
+
+ ListaP.addEventListener('click', completaApagar);
+
+    function completaApagar(evento) {
+        const qual = evento.target;
+
+        //Apagar plano
+        if (qual.classList[0] === "excluiTask") {
+            const plan = qual.parentElement;
+            // Animação do youtube
+            plan.classList.add("vala");
+            plan.addEventListener('transitionend', function () {
+                plan.remove();
+            })
+        }
+
+        //Plano completo
+        if (qual.classList[0] === "taskCompletada") {
+            const plan = qual.parentElement;
+            plan.classList.toggle('Completado');
+        }
+    }
+
+// Opções de planos feitos / não feitos
+
+
+
+const editButao = document.querySelectorAll('.ediTask');
+
+editButao.forEach(button => {
+  button.addEventListener('click', () => {
+    const listaItem = button.parentElement.querySelector('.listaFalta');
+    const text = listaItem.innerText;
+    const id = listaItem.dataset.id;
+    listaItem.innerHTML = `
+      <form class="editForm" method="POST" action="/Planos/atualizar/${id}">
+        <input type="hidden" name="id" value="${id}">
+        <input class="alterarInput" type="text" name="novoPlano" value="${text}" />
+        <button class="alterarBotao" type="submit"><ion-icon name="checkmark-circle" class="checked"></ion-icon></button>
+      </form>
+    `;
+  });
+});
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<style>
+
+.textoH {
+    padding: 10rem 0rem 0rem 0rem;
+    font-size: 1.5rem;
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AdicionarPlan {
+    width: 100%;
+    padding: 10px 0;
+    min-height: 10Vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.AdicionarPlan input, .AdicionarPlan button {
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: none;
+}
+
+
+.AdicionarPlan input {
+    width: 30%;
+    color: #333;
+    border: none;
+    border-bottom: 2px solid #666;
+    background: none;
+    padding: 10px;
+    font-size: 22px;
+    outline: none;
+    color: #fff;
+}
+
+.AdicionarPlan .addPlan {
+    background: none;
+    color:#062230 ;
+    font-size: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.AdicionarPlan .addPlan:hover {
+    color:#fff;
+}
+
+.listaCompleta {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ListaPlanejamento {
+    min-width: 30%;
+    list-style: none;
+}
+
+.faltaCumprir {
+    margin: 0.5rem;
+    background: white;
+    color: #a52a2a;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+.faltaCumprir li {
+    flex: 1;
+    border-radius: 5px;
+}
+
+.taskCompletada, .excluiTask, .ediTask , .alterarBotao{
+    background: none;
+    border: none;
+    padding: 0.4rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+.taskCompletada{
+    color: rgb(73, 204, 73);
+}
+
+.ediTask {
+    color: #54798b;
+}
+
+.excluiTask {
+    color: #1a0803;
+}
+
+.alterarBotao{
+    color: #a52a2a
+}
+
+.listaFalta {
+    padding: 0rem 0.5rem;
+}
+
+.checked, .trash {
+    pointer-events: none;
+}
+
+.Completado {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.vala {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+}
+
+.alterarInput {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 2px;
+    font-size: 1.3rem;
+    width: 220px;
+}
+
+
+.alterarBotao {
+    
+
+}
+
+
+</style>
